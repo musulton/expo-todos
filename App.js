@@ -1,19 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
-import ToDoScreen from "./src/screens/TodoScreen/ToDoScreen";
-import SplashScreen from "./src/screens/SplashScreen/SplashScreen";
+import { StyleSheet, SafeAreaView } from 'react-native';
+
+import AppNavigation from "./src/navigations/RootNavigator";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ToDoScreen />
+      <AppNavigation />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20
+    flex: 1
   },
 });
