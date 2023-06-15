@@ -7,15 +7,19 @@ import Heading from "../../shared/components/Heading";
 import PATH from "../../navigations/NavigationPath";
 
 import styles from "./LoginScreen.styles";
+import {onNavigate} from "../../navigations/RootNavigation";
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
     const submitLogin = () => {
         setTimeout(() => {
             if (username === "enigma" && password === "123") {
-                navigation.replace(PATH.TODO_LIST)
+                onNavigate({
+                    routeName: PATH.TODO_LIST,
+                    isReplace: true
+                })
             }
         }, 1500)
     }

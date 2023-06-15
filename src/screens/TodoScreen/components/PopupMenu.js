@@ -4,12 +4,15 @@ import Icon from "@expo/vector-icons/FontAwesome";
 
 import PATH from "../../../navigations/NavigationPath";
 import styles from "./PopupMenu.styles";
+import {onNavigate} from "../../../navigations/RootNavigation";
 
-const PopupMenu = ({navigation}) => {
+const PopupMenu = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false)
 
     const onLogout = () => {
-        navigation.navigate(PATH.LOGIN)
+        onNavigate({
+            routeName: PATH.LOGIN
+        });
     }
 
     return (

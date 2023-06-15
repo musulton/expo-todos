@@ -3,11 +3,15 @@ import {Image, View, StyleSheet} from "react-native";
 
 import enigma from "../../shared/assets/images/enigma.png";
 import PATH from "../../navigations/NavigationPath";
+import {onNavigate} from "../../navigations/RootNavigation";
 
-const SplashScreen = (props) => {
+const SplashScreen = () => {
     React.useEffect(() => {
         setTimeout(() => {
-            props.navigation.replace(PATH.LOGIN)
+            onNavigate({
+                isReplace: true,
+                routeName: PATH.LOGIN
+            });
         }, 3000)
     }, [])
 
