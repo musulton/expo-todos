@@ -70,7 +70,10 @@ const ToDoScreen = () => {
                 value={appState.inputValue}
                 onChangeValue={onChangeInputValue}
             />
-            <SubmitButton submitTodo={submitTodo} />
+            <SubmitButton
+                onSubmit={submitTodo}
+                title={"Submit"}
+            />
             <ToDoList
                 todos={appState.todos}
                 deleteTodo={deleteTodo}

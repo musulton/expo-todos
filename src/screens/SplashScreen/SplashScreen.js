@@ -7,7 +7,7 @@ import PATH from "../../navigations/NavigationPath";
 const SplashScreen = (props) => {
     React.useEffect(() => {
         setTimeout(() => {
-            props.navigation.navigate(PATH.TODO_LIST)
+            props.navigation.replace(PATH.LOGIN)
         }, 3000)
     }, [])
 
