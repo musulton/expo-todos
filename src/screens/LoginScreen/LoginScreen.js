@@ -4,24 +4,15 @@ import {SafeAreaView, View} from "react-native";
 import Input from "../../shared/components/Input";
 import SubmitButton from "../../shared/components/SubmitButton";
 import Heading from "../../shared/components/Heading";
-import PATH from "../../navigations/NavigationPath";
-
 import styles from "./LoginScreen.styles";
-import {onNavigate} from "../../navigations/RootNavigation";
 
-const LoginScreen = () => {
-    const [username, setUsername] = React.useState("");
+const LoginScreen = ({login}) => {
+    const {onAuthenticate} = login();
+    const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
     const submitLogin = () => {
-        setTimeout(() => {
-            if (username === "enigma" && password === "123") {
-                onNavigate({
-                    routeName: PATH.TODO_LIST,
-                    isReplace: true
-                })
-            }
-        }, 1500)
+        onAuthenticate(email, password)
     }
 
     return (
@@ -30,8 +21,8 @@ const LoginScreen = () => {
                 <Heading />
             </View>
             <Input
-                value={username}
-                onChangeValue={setUsername}
+                value={email}
+                onChangeValue={setEmail}
                 placeholder={"Enter your username"}
             />
             <Input

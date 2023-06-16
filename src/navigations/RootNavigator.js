@@ -9,6 +9,8 @@ import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import PopupMenu from "../screens/TodoScreen/components/PopupMenu";
 import PATH from "./NavigationPath";
 import {navigationRef} from "./RootNavigation";
+import {Login} from "../screens/LoginScreen/Login";
+import LoginService from "../services/LoginService";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +19,9 @@ const AppNavigation = () => {
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator initialRouteName={PATH.SPLASH}>
                 <Stack.Screen name={PATH.SPLASH} component={SplashScreen} options={{headerShown: false}} />
-                <Stack.Screen name={PATH.LOGIN} component={LoginScreen} options={{headerShown: false}} />
+                <Stack.Screen name={PATH.LOGIN} options={{headerShown: false}}>
+                    {() => <LoginScreen login={() => Login(LoginService)} />}
+                </Stack.Screen>
                 <Stack.Group
                     screenOptions={({navigation}) => {
                         return {
