@@ -3,6 +3,7 @@ import {
     UnauthorizedError,
     GlobalError
 } from "../shared/utils/AppError";
+import localStorage from "../shared/utils/LocalStorage";
 
 const client = axios.create({
     baseURL: "https://34bb-103-78-25-190.ngrok-free.app"
@@ -10,7 +11,7 @@ const client = axios.create({
 
 client.interceptors.request.use(async (config) => {
     if (config.url !== "/login") {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVuaWdtYWNhbXAuY29tIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE2ODY4ODUyNjEsImV4cCI6MTY4Njg4ODg2MX0.ZviaIrTH-q0Gwfxr_4GhP8-Mn1MlYRLGPm0ojdlyw1s";
+        const token = await localStorage().getData("token");
 
         config.headers = {
             'Authorization': `Bearer ${token}`

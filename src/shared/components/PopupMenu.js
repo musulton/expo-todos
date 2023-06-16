@@ -2,17 +2,24 @@ import React from "react";
 import {Modal, Text, View, TouchableOpacity, Pressable, TouchableWithoutFeedback} from "react-native";
 import Icon from "@expo/vector-icons/FontAwesome";
 
-import PATH from "../../../navigations/NavigationPath";
+import PATH from "../../navigations/NavigationPath";
 import styles from "./PopupMenu.styles";
-import {onNavigate} from "../../../navigations/RootNavigation";
+import {onNavigate} from "../../navigations/RootNavigation";
+import localStorage from "../utils/LocalStorage";
 
 const PopupMenu = () => {
-    const [isModalVisible, setIsModalVisible] = React.useState(false)
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
 
-    const onLogout = () => {
-        onNavigate({
-            routeName: PATH.LOGIN
-        });
+    const onLogout = async () => {
+        try {
+            await localStorage().removeData("token");
+
+            onNavigate({
+                routeName: PATH.LOGIN
+            });
+        } catch (e) {
+
+        }
     }
 
     return (

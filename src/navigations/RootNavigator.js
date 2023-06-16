@@ -6,7 +6,7 @@ import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import ToDoScreen from "../screens/TodoScreen/ToDoScreen";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
 
-import PopupMenu from "../screens/TodoScreen/components/PopupMenu";
+import PopupMenu from "../shared/components/PopupMenu";
 import PATH from "./NavigationPath";
 import {navigationRef} from "./RootNavigation";
 import {Login} from "../screens/LoginScreen/Login";
