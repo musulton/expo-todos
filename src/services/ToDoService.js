@@ -1,16 +1,12 @@
 import {useDeps} from "../shared/context/DependencyContext";
 
-const LoginService = () => {
+const ToDoService = () => {
     const {apiClient} = useDeps();
-
-    const login = async (email, password) => {
+    const getTodoService = async () => {
         try {
             const data = await apiClient({
-                method: 'post',
-                url: 'auth/login',
-                params: {
-                    email, password
-                }
+                url: "/todos",
+                method: "get"
             });
 
             return data;
@@ -20,8 +16,8 @@ const LoginService = () => {
     }
 
     return {
-        login
+        getTodoService
     }
 }
 
-export default LoginService;
+export default ToDoService;

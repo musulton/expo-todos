@@ -5,11 +5,9 @@ import DepProvider from "./src/shared/context/DependencyContext";
 import ApiClient from "./src/services/ApiClient";
 
 export default function App() {
-  const apiClient = ApiClient();
-
   return (
     <SafeAreaView style={styles.container}>
-      <DepProvider services={{apiClient}}>
+      <DepProvider services={{apiClient: ApiClient}}>
         <AppNavigation />
       </DepProvider>
     </SafeAreaView>

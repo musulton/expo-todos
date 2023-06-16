@@ -8,25 +8,33 @@ const client = axios.create({
     baseURL: "https://34bb-103-78-25-190.ngrok-free.app"
 });
 
-const clientService = () => {
-    const post = async (url, params) => {
-        try {
-            const result = await client.post(url, params);
-            return result.data;
-        } catch (e) {
-            if (e.response) {
-                if (e.response.status === 401) {
-                    throw new UnauthorizedError("Unauthorized");
-                }
-            } else {
-                throw new GlobalError('Oops');
-            }
+client.interceptors.request.use(async (config) => {
+    if (config.url !== "/login") {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVuaWdtYWNhbXAuY29tIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE2ODY4ODUyNjEsImV4cCI6MTY4Njg4ODg2MX0.ZviaIrTH-q0Gwfxr_4GhP8-Mn1MlYRLGPm0ojdlyw1s";
+
+        config.headers = {
+            'Authorization': `Bearer ${token}`
         }
     }
 
-    return {
-        post
+    return config;
+})
+
+const apiClient = async ({
+    url, method, params = null
+ }) => {
+    try {
+        const result = await client[method](url, params);
+        return result.data;
+    } catch (e) {
+        if (e.response) {
+            if (e.response.status === 401) {
+                throw new UnauthorizedError("Unauthorized");
+            }
+        } else {
+            throw new GlobalError('Oops');
+        }
     }
 }
 
-export default clientService;
+export default apiClient;

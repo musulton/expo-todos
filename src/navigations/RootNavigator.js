@@ -11,6 +11,8 @@ import PATH from "./NavigationPath";
 import {navigationRef} from "./RootNavigation";
 import {Login} from "../screens/LoginScreen/Login";
 import LoginService from "../services/LoginService";
+import ToDoService from "../services/ToDoService";
+import {ToDo} from "../screens/TodoScreen/ToDo";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +36,9 @@ const AppNavigation = () => {
                         }
                     }}
                 >
-                    <Stack.Screen name={PATH.TODO_LIST} component={ToDoScreen} options={{ title: "" }} />
+                    <Stack.Screen name={PATH.TODO_LIST} options={{ title: "" }}>
+                        {() => <ToDoScreen todo={() => ToDo(ToDoService)} />}
+                    </Stack.Screen>
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

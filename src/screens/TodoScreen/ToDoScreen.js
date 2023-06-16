@@ -10,18 +10,23 @@ import ToDoList from "./components/ToDoList";
 
 import styles from "./ToDoScreen.styles";
 
-const TODOS = [
-    { id: 1, title: " 1", complete: true },
-    { id: 2, title: "Title 2", complete: false },
-    { id: 3, title: "Title 3", complete: false },
-]
-
-const ToDoScreen = () => {
+const ToDoScreen = ({todo}) => {
+    const {onLoadTodo} = todo();
     const [appState, setAppState] = React.useState({
         type: "All",
-        todos: [...TODOS],
+        todos: [],
         inputValue: ""
-    })
+    });
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const todos = await onLoadTodo();
+
+            setAppState({...appState, todos})
+        }
+
+        fetchData();
+    }, [])
 
     const onChangeInputValue = (inputValue) => {
         setAppState({
