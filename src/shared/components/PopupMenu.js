@@ -6,19 +6,31 @@ import PATH from "../../navigations/NavigationPath";
 import styles from "./PopupMenu.styles";
 import {onNavigate} from "../../navigations/RootNavigation";
 import localStorage from "../utils/LocalStorage";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../store/login/LoginAction";
+import {showError} from "../store/app/AppAction";
 
 const PopupMenu = () => {
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.LoginReducer.isLoggedIn);
+
     const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+    React.useEffect(() => {
+        if (isLoggedIn === false) {
+            onNavigate({
+                routeName: PATH.LOGIN,
+                isReplace: true
+            })
+        }
+    });
 
     const onLogout = async () => {
         try {
             await localStorage().removeData("token");
-
-            onNavigate({
-                routeName: PATH.LOGIN
-            });
+            dispatch(logout());
         } catch (e) {
-
+            dispatch(showError(e.message));
         }
     }
 

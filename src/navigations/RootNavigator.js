@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
     return (
         <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator initialRouteName={PATH.SPLASH}>
+            <Stack.Navigator initialRouteName={PATH.TODO_LIST}>
                 <Stack.Screen name={PATH.SPLASH} component={SplashScreen} options={{headerShown: false}} />
                 <Stack.Screen name={PATH.LOGIN} options={{headerShown: false}}>
                     {() => <LoginScreen login={() => Login(LoginService)} />}

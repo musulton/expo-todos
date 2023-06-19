@@ -14,6 +14,7 @@ export const Login = (service) => {
 
             await login(email, password);
 
+            dispatch(login());
             onNavigate({
                 routeName: PATH.TODO_LIST,
                 isReplace: true
