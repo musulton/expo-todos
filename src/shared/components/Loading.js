@@ -11,7 +11,7 @@ const Loading = () => {
 
     return isLoading && (
         <View style={styles.loading}>
-            <StatusBar backgroundColor={"#0000FF"} />
+            <StatusBar backgroundColor={"#F2F2F2"} />
             <ActivityIndicator size={"large"} color={"#0000FF"} />
         </View>
     )

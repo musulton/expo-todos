@@ -11,22 +11,40 @@ import ToDoList from "./components/ToDoList";
 import styles from "./ToDoScreen.styles";
 
 const ToDoScreen = ({todo}) => {
-    const {onLoadTodo} = todo();
+    const {
+        onLoadTodo,
+        onSubmitTodo,
+        onDeleteTodo,
+        onCompletedTodo
+    } = todo();
+
     const [appState, setAppState] = React.useState({
         type: "All",
         todos: [],
-        inputValue: ""
+        inputValue: "",
+        shouldRefetch: true
     });
+
+    const onRefetch = (isRefetch) => () => {
+        setAppState((prevState) => ({
+            ...prevState,
+            shouldRefetch: isRefetch
+        }))
+    }
 
     React.useEffect(() => {
         const fetchData = async () => {
             const todos = await onLoadTodo();
+            setAppState({...appState, todos});
 
-            setAppState({...appState, todos})
+            onRefetch(false)();
         }
 
-        fetchData();
-    }, [])
+        if (appState.shouldRefetch) {
+            fetchData();
+        }
+
+    }, [appState.shouldRefetch]);
 
     const onChangeInputValue = (inputValue) => {
         setAppState({
@@ -40,32 +58,15 @@ const ToDoScreen = ({todo}) => {
     }
 
     const submitTodo = () => {
-        const payload = {
-            title: appState.inputValue,
-            complete: false,
-            id: appState.todos.length + 1
-        }
-
-        const todos = [...appState.todos, payload]
-        setAppState({...appState, inputValue: "", todos})
+        onSubmitTodo(appState.inputValue, onRefetch(true));
     }
 
-    const toggleComplete = (todoIndex) => {
-        const {todos} = appState;
-        todos.forEach((todo) => {
-            if (todoIndex === todo.id) {
-                todo.complete = !todo.complete
-            }
-        })
-
-        setAppState({...appState, todos})
+    const toggleComplete = (todo) => {
+        onCompletedTodo(todo, onRefetch(true));
     }
 
     const deleteTodo = (todoIndex) => {
-        const {todos} = appState;
-        const newTodos = todos.filter((todo) => todo.id !== todoIndex)
-
-        setAppState({...appState, todos: newTodos})
+        onDeleteTodo(todoIndex, onRefetch(true));
     }
 
     return (

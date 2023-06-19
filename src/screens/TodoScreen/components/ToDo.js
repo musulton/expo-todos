@@ -18,7 +18,7 @@ const ToDo = ({
             <View style={styles.buttonWrapper}>
                 <ToDoButton
                     nameIcon={"checkmark-done-circle-outline"}
-                    onPress={() => toggleComplete(todo.id)}
+                    onPress={() => toggleComplete(todo)}
                     colorIcon={"green"}
                 />
                 <ToDoButton
