@@ -3,7 +3,7 @@ import {
     SHOW_ERROR
 } from "./AppAction";
 
-const initialState = {
+export const initialState = {
     isLoading: false,
     errorMessage: ""
 }
