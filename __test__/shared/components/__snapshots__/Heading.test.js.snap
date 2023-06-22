@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading should render correctly 1`] = `
+<Text
+  style={
+    {
+      "color": "rgba(175, 47, 47, 0.25)",
+      "fontSize": 52,
+      "fontWeight": "200",
+      "textAlign": "center",
+    }
+  }
+>
+  todos
+</Text>
+`;
