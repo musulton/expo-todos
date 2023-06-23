@@ -1,4 +1,5 @@
 import {Text, TouchableHighlight, StyleSheet} from "react-native";
+import {getAccessibilityLabel} from "../utils/Functions";
 
 const TabBarItem = (props) => {
     const {
@@ -18,6 +19,7 @@ const TabBarItem = (props) => {
                 selected ? styles.selected : null,
                 border ? styles.border : null
             ]}
+            {...getAccessibilityLabel(`Tab_Bar_Item_${title}`)}
         >
             <Text style={[
                 styles.text,

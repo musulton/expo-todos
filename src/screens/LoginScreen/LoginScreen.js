@@ -31,11 +31,13 @@ const LoginScreen = ({login}) => {
                 <Heading />
             </View>
             <Input
+                label={"Email"}
                 value={email}
                 onChangeValue={setEmail}
                 placeholder={"Enter your username"}
             />
             <Input
+                label={"Password"}
                 value={password}
                 onChangeValue={setPassword}
                 placeholder={"Enter your password"}

@@ -1,7 +1,8 @@
 import React from "react";
 import {TextInput, StyleSheet} from "react-native";
+import {getAccessibilityLabel} from "../utils/Functions";
 
-const Input = ({value, onChangeValue, placeholder, isSecureText}) => {
+const Input = ({value, onChangeValue, placeholder, isSecureText, label}) => {
     return (
         <TextInput
             value={value}
@@ -11,6 +12,7 @@ const Input = ({value, onChangeValue, placeholder, isSecureText}) => {
             placeholderTextColor={"#CACACA"}
             selectionColor={"#666666"}
             secureTextEntry={isSecureText}
+            {...getAccessibilityLabel(`${label}_Text_Input_Component`)}
         />
     )
 }

@@ -5,12 +5,16 @@ import {
     StyleSheet
 } from "react-native";
 import {useSelector} from "react-redux";
+import {getAccessibilityLabel} from "../utils/Functions";
 
 const Loading = () => {
     const isLoading = useSelector((state) => state.AppReducer.isLoading);
 
     return isLoading && (
-        <View style={styles.loading}>
+        <View
+            style={styles.loading}
+            {...getAccessibilityLabel("Loading_Component")}
+        >
             <StatusBar backgroundColor={"#F2F2F2"} />
             <ActivityIndicator size={"large"} color={"#0000FF"} />
         </View>

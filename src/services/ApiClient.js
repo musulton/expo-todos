@@ -6,7 +6,7 @@ import {
 import localStorage from "../shared/utils/LocalStorage";
 
 const client = axios.create({
-    baseURL: "https://d14a-103-78-25-190.ngrok-free.app"
+    baseURL: "https://7948-103-78-25-190.ngrok-free.app"
 });
 
 client.interceptors.request.use(async (config) => {

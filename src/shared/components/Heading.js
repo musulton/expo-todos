@@ -1,7 +1,14 @@
 import {StyleSheet, Text} from "react-native";
 
+import {getAccessibilityLabel} from "../utils/Functions";
+
 const Heading = () => (
-    <Text style={styles.text}>todos</Text>
+    <Text
+        style={styles.text}
+        {...getAccessibilityLabel("Heading_Component")}
+    >
+        todos
+    </Text>
 )
 
 export default Heading;

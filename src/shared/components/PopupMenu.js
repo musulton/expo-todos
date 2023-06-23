@@ -9,6 +9,7 @@ import localStorage from "../utils/LocalStorage";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../store/login/LoginAction";
 import {showError} from "../store/app/AppAction";
+import {getAccessibilityLabel} from "../utils/Functions";
 
 const PopupMenu = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const PopupMenu = () => {
             <Pressable
                 style={styles.dotIcon}
                 onPress={() => setIsModalVisible(!isModalVisible)}
+                {...getAccessibilityLabel("Popup_Menu_Show_Modal_Component")}
             >
                 <Icon
                     name={"ellipsis-v"}
@@ -49,17 +51,22 @@ const PopupMenu = () => {
                 animationType={"fade"}
                 transparent
                 visible={isModalVisible}
+                {...getAccessibilityLabel("Popup_Menu_Hide_Modal_Container")}
                 onRequestClose={() => setIsModalVisible(!isModalVisible)}
             >
                 <TouchableOpacity
                     style={styles.container}
                     activeOpacity={1}
+                    {...getAccessibilityLabel("Popup_Menu_Hide_Modal_Component")}
                     onPressOut={() => setIsModalVisible(false)}
                 >
                     <View style={styles.centeredView}>
                         <TouchableWithoutFeedback>
                             <View style={styles.modalView}>
-                                <Pressable onPress={onLogout}>
+                                <Pressable
+                                    onPress={onLogout}
+                                    {...getAccessibilityLabel("Logout_Button_Component")}
+                                >
                                     <Text style={styles.modalText}>Logout</Text>
                                 </Pressable>
                             </View>

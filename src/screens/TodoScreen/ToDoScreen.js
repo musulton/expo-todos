@@ -28,6 +28,7 @@ const ToDoScreen = ({todo}) => {
     const onRefetch = (isRefetch) => () => {
         setAppState((prevState) => ({
             ...prevState,
+            inputValue: "",
             shouldRefetch: isRefetch
         }))
     }
@@ -73,6 +74,7 @@ const ToDoScreen = ({todo}) => {
         <View style={styles.container}>
             <Heading />
             <Input
+                label={"Todo"}
                 value={appState.inputValue}
                 onChangeValue={onChangeInputValue}
             />

@@ -1,4 +1,5 @@
 import {TouchableHighlight, Text, StyleSheet, View} from "react-native";
+import {getAccessibilityLabel} from "../utils/Functions";
 
 const SubmitButton = ({onSubmit, title}) => (
     <View style={styles.container}>
@@ -6,6 +7,7 @@ const SubmitButton = ({onSubmit, title}) => (
             underlayColor={"#efefef"}
             onPress={onSubmit}
             style={styles.button}
+            {...getAccessibilityLabel("Submit_Button_Component")}
         >
             <Text style={styles.text}>{title}</Text>
         </TouchableHighlight>
